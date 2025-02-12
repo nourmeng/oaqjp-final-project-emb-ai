@@ -15,9 +15,6 @@ def emotion_detector(text_to_analyse):
     # Send a POST request to the Watson NLP API with the URL, headers, and input JSON
     response = requests.post(url, headers=headers, json=input_json)
     
-    # Return the raw text response from the API
-    return response.text
-
     # Parse the JSON response
     response_json = json.loads(response.text)
     
@@ -36,3 +33,5 @@ def emotion_detector(text_to_analyse):
         'sadness': emotions['sadness'],
         'dominant_emotion': dominant_emotion
     }
+
+    return formatted_output
