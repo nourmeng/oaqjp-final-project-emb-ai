@@ -1,3 +1,10 @@
+"""
+server.py
+
+This module defines a Flask web application that provides an emotion detection service.
+It exposes two routes: the home page and an emotion detector endpoint.
+"""
+
 # Import necessary modules from Flask
 from flask import Flask, request, render_template
 
@@ -9,13 +16,25 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
+    """
+    Render the home page.
+
+    Returns:
+        str: The rendered HTML template for the home page.
+    """
     return render_template("index.html")
 
 
 # Define a route for the emotion detector endpoint
 @app.route("/emotionDetector")
 def emotion_detection():
+    """
+    Analyze the emotion of the provided text.
 
+    Returns:
+        str: A formatted string with emotion scores and the dominant emotion,
+             or an error message if the input text is invalid.
+    """
     # Get the text to analyze from the query parameters
     text_to_analyse = request.args.get("textToAnalyze")
 
@@ -25,7 +44,7 @@ def emotion_detection():
     # Check if the dominant emotion is None (indicating an error)
     if result['dominant_emotion'] is None:
         return "Invalid text! Please try again!"
-        
+
     # Extract emotion scores and the dominant emotion from the result
     anger = result['anger']
     disgust = result['disgust']
@@ -47,4 +66,5 @@ def emotion_detection():
 # Run the Flask application if this script is executed directly
 if __name__ == "__main__":
     # Start the Flask development server
-    app.run(host="127.0.0.1", port=5000,debug=True)
+    app.run(host="127.0.0.1", port=5000, debug=True)
+    
