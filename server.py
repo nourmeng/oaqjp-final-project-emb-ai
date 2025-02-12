@@ -15,8 +15,9 @@ def home():
 # Define a route for the emotion detector endpoint
 @app.route("/emotionDetector")
 def emotion_detection():
+
     # Get the text to analyze from the query parameters
-    text_to_analyse = request.args.get("TextToAnalyse")
+    text_to_analyse = request.args.get("textToAnalyze")
 
     # Call the emotion_detector function with the text to analyze
     result = emotion_detector(text_to_analyse)
@@ -41,5 +42,5 @@ def emotion_detection():
 
 # Run the Flask application if this script is executed directly
 if __name__ == "__main__":
-    # Start the Flask development server, listening on all available IP addresses (0.0.0.0) and port 5000
+    # Start the Flask development server
     app.run(host="127.0.0.1", port=5000,debug=True)
